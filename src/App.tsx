@@ -1,10 +1,11 @@
 import React from 'react';
+import BasePageLayout from './Components/BasePageLayout/BasePageLayout';
 
 const App = () => {
   return (
-    <div>
+    <BasePageLayout>
       WAGMI 
-    </div>
+    </BasePageLayout>
   );
 }
 
