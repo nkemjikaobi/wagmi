@@ -1,0 +1,14 @@
+@import '../../Assets/styles/shared-styles.scss';
+.navigationWrapper {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	cursor: pointer;
+
+	.logoWrapper {
+		z-index: 1;
+		img {
+			cursor: pointer;
+		}
+	}
+}

@@ -1,7 +1,8 @@
 import React from 'react';
 import styles from './BasePageLayout.module.scss';
-import Navigation from '../Navigation/Navigation';
+import Navigation from 'Components/Navigation/Navigation';
 import Particles from 'react-tsparticles';
+import MobileNav from 'Components/MobileNav/MobileNav';
 interface IBasePageLayout {
 	children: any;
 	showNavigation?: boolean;
@@ -106,7 +107,12 @@ const BasePageLayout: React.FunctionComponent<IBasePageLayout> = ({
 							detectRetina: true,
 						}}
 					/>
-					<Navigation />
+					<div className={styles.tabletAndAboveOnly}>
+						<Navigation />
+					</div>
+					<div className={styles.mobileOnly}>
+						<MobileNav />
+					</div>
 				</div>
 			)}
 			<main className={styles.children}>{children}</main>

@@ -9,6 +9,10 @@
 	transform: translate(-50%, -50%);
 	color: color(White);
 
+	@include breakpoint('s') {
+		top: 45%;
+	}
+
 	h1 {
 		font-size: to-rem(85);
 		margin: 1.6rem;
@@ -17,6 +21,9 @@
 			text-align: center;
 			margin: 0.5rem;
 		}
+		@include breakpoint('s') {
+			font-size: 2rem;
+		}
 	}
 	p {
 		text-align: center;
@@ -24,12 +31,20 @@
 		width: to-rem(850);
 		line-height: 2.7rem;
 		margin-bottom: 2rem;
+
+		@include breakpoint('s') {
+			width: 53%;
+			font-size: 1rem;
+		}
 	}
 	.buttonWrapper {
 		display: flex;
 		justify-content: space-around;
 		align-items: center;
 		width: 42rem;
+		@include breakpoint('s') {
+			flex-direction: column;
+		}
 		button {
 			display: flex;
 			justify-content: center;
@@ -38,8 +53,13 @@
 			border-radius: to-rem(60);
 			width: 20rem;
 			height: 4rem;
-            font-size: to-rem(20);
-            cursor: pointer;
+			font-size: to-rem(20);
+			cursor: pointer;
+			@include breakpoint('s') {
+				margin: 1rem;
+				width: 14rem;
+				height: 3rem;
+			}
 		}
 		button:first-child {
 			background: color(Primary);
