@@ -1,1 +1,8 @@
 @import '../../Assets/styles/shared-styles.scss';
+.basePageLayout {
+	overflow: hidden;
+	.children {
+		max-width: to-rem(1440);
+		margin: 0 auto;
+	}
+}
