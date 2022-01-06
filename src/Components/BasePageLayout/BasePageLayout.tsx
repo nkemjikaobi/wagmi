@@ -13,7 +13,11 @@ const BasePageLayout: React.FunctionComponent<IBasePageLayout> = ({
 }) => {
 	return (
 		<section className={styles.basePageLayout}>
-			{showNavigation && <Navigation />}
+			{showNavigation && (
+				<div className={styles.section}>
+					<Navigation />
+				</div>
+			)}
 			<main className={styles.children}>{children}</main>
 		</section>
 	);

@@ -1,6 +1,26 @@
 @import '../../Assets/styles/shared-styles.scss';
 .basePageLayout {
 	overflow: hidden;
+	.section::before {
+		background: #020928;
+		bottom: 0;
+		content: '';
+		height: 100%;
+		left: 0;
+		position: absolute;
+		right: 0;
+		top: 0;
+		width: 100%;
+		opacity: 0.7;
+	}
+	.section {
+		background-image: url('../../Assets/images/png/bg.jpeg');
+		background-position: center center;
+		background-repeat: no-repeat;
+		background-size: cover;
+		height: 100vh;
+		padding: 2rem;
+	}
 	.children {
 		max-width: to-rem(1440);
 		margin: 0 auto;

@@ -1,1 +1,44 @@
 @import '../../Assets/styles/shared-styles.scss';
+.navigationWrapper {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	cursor: pointer;
+
+    .logoWrapper {
+        img {
+            cursor: pointer;
+        }
+    }
+
+	.listWrapper {
+		display: flex;
+		align-items: center;
+		width: 30vw;
+		justify-content: space-between;
+		color: color(White);
+		z-index: 2;
+
+		.usdt {
+			span {
+				display: inline-block;
+				margin-right: to-rem(7);
+			}
+		}
+
+		button {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			background-color: color(Primary);
+			border-radius: to-rem(7);
+			padding: to-rem(10);
+			color: color(White);
+			height: to-rem(48);
+			width: to-rem(100);
+			height: 2.2rem;
+			width: 5.25rem;
+            cursor: pointer;
+		}
+	}
+}
