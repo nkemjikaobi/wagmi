@@ -50,7 +50,7 @@ const BasePageLayout: React.FunctionComponent<IBasePageLayout> = ({
 								modes: {
 									bubble: {
 										distance: 400,
-										duration: 2,
+										duration: 1,
 										opacity: 0.8,
 										size: 40,
 									},
