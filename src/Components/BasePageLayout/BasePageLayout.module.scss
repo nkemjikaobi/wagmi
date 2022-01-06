@@ -1,11 +1,12 @@
 @import '../../Assets/styles/shared-styles.scss';
 .basePageLayout {
 	overflow: hidden;
+	position: relative;
 	.section::before {
 		background: #020928;
 		bottom: 0;
 		content: '';
-		height: 100%;
+		height: 95%;
 		left: 0;
 		position: absolute;
 		right: 0;
@@ -18,7 +19,7 @@
 		background-position: center center;
 		background-repeat: no-repeat;
 		background-size: cover;
-		height: 100vh;
+		height: 89vh;
 		padding: 2rem;
 	}
 	.children {
