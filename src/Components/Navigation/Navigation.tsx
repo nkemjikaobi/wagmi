@@ -5,7 +5,7 @@ const Navigation = () => {
 	return (
 		<div>
 			<div>
-                <img src={logo} width={50} height={50}/>
+                <img src={logo} width={50} height={50} alt="logo" />
 			</div>
 			<div></div>
 		</div>
