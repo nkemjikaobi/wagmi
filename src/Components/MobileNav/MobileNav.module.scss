@@ -4,11 +4,14 @@
 	justify-content: space-between;
 	align-items: center;
 	cursor: pointer;
+	//z-index: 1;
 
 	.logoWrapper {
-		z-index: 1;
 		img {
 			cursor: pointer;
 		}
+	}
+	.iconWrapper {
+		color: color(White);
 	}
 }

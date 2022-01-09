@@ -21,6 +21,15 @@
 		background-size: cover;
 		height: 89vh;
 		padding: 2rem;
+
+		.mobile {
+			position: absolute;
+			width: 80%;
+			@include breakpoint('s') {
+				position: absolute;
+				width: 80%;
+			}
+		}
 	}
 	.children {
 		max-width: to-rem(1440);

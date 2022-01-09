@@ -3,6 +3,7 @@ import styles from './BasePageLayout.module.scss';
 import Navigation from 'Components/Navigation/Navigation';
 import Particles from 'react-tsparticles';
 import MobileNav from 'Components/MobileNav/MobileNav';
+import { composeClasses } from 'Libs/Utils/utils';
 interface IBasePageLayout {
 	children: any;
 	showNavigation?: boolean;
@@ -110,7 +111,7 @@ const BasePageLayout: React.FunctionComponent<IBasePageLayout> = ({
 					<div className={styles.tabletAndAboveOnly}>
 						<Navigation />
 					</div>
-					<div className={styles.mobileOnly}>
+					<div className={composeClasses(styles.mobile,styles.mobileOnly)}>
 						<MobileNav />
 					</div>
 				</div>
