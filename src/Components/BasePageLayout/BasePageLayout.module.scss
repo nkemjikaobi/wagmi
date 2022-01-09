@@ -20,7 +20,9 @@
 		background-repeat: no-repeat;
 		background-size: cover;
 		height: 89vh;
-		padding: 2rem;
+		@include breakpoint-mini('m') {
+			padding: 2rem;
+		}
 
 		.mobile {
 			position: absolute;
@@ -28,6 +30,11 @@
 			@include breakpoint('s') {
 				position: absolute;
 				width: 80%;
+				background-color: color(DarkBlue);
+				width: 100%;
+				padding-top: 1rem;
+				padding-bottom: 1rem;
+				z-index: 4;
 			}
 		}
 	}

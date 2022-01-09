@@ -19,7 +19,7 @@ const Navigation = () => {
 				</div>
 				<div>Plans</div>
 				<div>
-					<a href='/paid'>Already Paid?</a>
+					<Link to='/paid'>Already Paid?</Link>
 				</div>
 				<div>
 					<button>Register</button>

@@ -1,7 +1,7 @@
 @import '../../Assets/styles/shared-styles.scss';
 .navigationWrapper {
 	display: flex;
-	justify-content: space-between;
+	justify-content: space-around;
 	align-items: center;
 	cursor: pointer;
 	//z-index: 1;
@@ -14,4 +14,15 @@
 	.iconWrapper {
 		color: color(White);
 	}
+}
+.links {
+	margin-top: to-rem(15);
+	color: color(White);
+	div {
+		margin: 1rem;
+	}
+}
+.bottomMargin {
+	margin-bottom: 2rem;
+	margin-left: 3rem;
 }
