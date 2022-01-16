@@ -19,6 +19,8 @@ import CopyWright from 'Components/CopyWright/CopyWright';
 import styles from "./HomePage.module.scss";
 import Particles from 'react-tsparticles';
 import HorizontalLiveTicker from 'Components/HoriziontalLiveTicker/HorizontalLiveTicker';
+import CryptoCharts from 'Components/CryptoCharts/CryptoCharts';
+import CurrencyConverter from 'Components/CurrencyConverter/CurrencyConverter';
 
 
 const PricingContent = () => {
@@ -39,7 +41,7 @@ const PricingContent = () => {
 			<CssBaseline />
 			<AppBar
 				className={styles.navWrapper}
-				position='static'
+				position='fixed'
 				color='default'
 				elevation={0}
 				sx={{ borderBottom: theme => `1px solid ${theme.palette.divider}` }}
@@ -293,7 +295,11 @@ const PricingContent = () => {
 						</Grid>
 					))}
 				</Grid>
-			</Container>
+				</Container>
+				<div className={styles.charts}>
+					<CryptoCharts />
+					{/* <CurrencyConverter /> */}
+				</div>
 			{/* Footer */}
 			<Container
 				maxWidth='md'
