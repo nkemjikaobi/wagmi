@@ -26,7 +26,7 @@ const BasePageLayout: React.FunctionComponent<IBasePageLayout> = ({
 		<section className={styles.basePageLayout}>
 			{showNavigation && (
 				<div className={styles.section}>
-					<Particles
+					{/* <Particles
 						id='tsparticles'
 						init={particlesInit}
 						loaded={particlesLoaded}
@@ -107,7 +107,7 @@ const BasePageLayout: React.FunctionComponent<IBasePageLayout> = ({
 							},
 							detectRetina: true,
 						}}
-					/>
+					/> */}
 					<div className={styles.tabletAndAboveOnly}>
 						<Navigation />
 					</div>

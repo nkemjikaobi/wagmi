@@ -1,0 +1,20 @@
+@import '../../Assets/styles/shared-styles.scss';
+.plansWrapper {
+	position: relative;
+	color: color(Black);
+	margin-top: to-rem(70);
+	//margin-bottom: to-rem(70);
+	display: flex;
+	justify-content: space-evenly;
+	.plansItem {
+		background-color: color(White);
+		border-radius: to-rem(10);
+		background-color: blue;
+		width: 20%;
+		padding: 1rem;
+		h3 , p {
+			margin-bottom: 1rem;
+			text-align: center;
+		}
+	}
+}

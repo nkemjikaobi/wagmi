@@ -1,0 +1,36 @@
+export const PlansData: any[] = [
+	{
+		id: '1',
+		plan_name: 'AMBER',
+		price: '$100 - $999',
+		duration: '1 month(s) contract',
+		opt_time: 'Option out anytime',
+		roi: '1.00%',
+		referral_bonus: '5%',
+		hardware: 'GPU Rig',
+		maintainance_fee: 'None',
+	},
+	{
+		id: '2',
+		plan_name: 'AMBER',
+		price: '$100 - $999',
+		duration: '1 month(s) contract',
+		opt_time: 'Option out anytime',
+		roi: '1.00%',
+		referral_bonus: '5%',
+		hardware: 'GPU Rig',
+		maintainance_fee: 'None',
+	},
+	{
+		id: '3',
+		plan_name: 'AMBER',
+		price: '$100 - $999',
+		duration: '1 month(s) contract',
+		opt_time: 'Option out anytime',
+		roi: '1.00%',
+		referral_bonus: '5%',
+		hardware: 'GPU Rig',
+		maintainance_fee: 'None',
+	},
+];
+

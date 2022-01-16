@@ -1,3 +1,4 @@
+import Plans from 'Components/Plans/Plans';
 import React from 'react';
 import BasePageLayout from '../../Components/BasePageLayout/BasePageLayout';
 import styles from "./HomePage.module.scss";
@@ -10,14 +11,15 @@ const HomePage = () => {
 				</h1>
 				<p>
 					We offers users a fully operational long-term rental platform. It
-					plans to leverages blockchain<br /> technology to ensure seamless rental
-					experience.
+					plans to leverages blockchain
+					<br /> technology to ensure seamless rental experience.
 				</p>
 				<div className={styles.buttonWrapper}>
 					<button>Crypto Consultation</button>
 					<button>Learn More</button>
 				</div>
 			</div>
+			<Plans />
 		</BasePageLayout>
 	);
 };
