@@ -19,14 +19,16 @@ const HorizontalLiveTicker = () => {
                     marginWidth={0}
 					marginHeight={0}
 					frameBorder={0}
-					style={{border:'0',margin:'0',padding:'0'}}
+					style={{ border: '0', margin: '0', padding: '0' }}
+					title="f"
 				></iframe>
 			</div>
             <div style={{ color: '#626B7F', lineHeight: '14px', fontWeight: '400', fontSize: '11px', boxSizing: 'border-box', padding: '2px 6px', width: '100%', fontFamily: 'Verdana, Tahoma, Arial, sans-serif'}}>
 				<a
                     href='https://coinlib.io'
                     target='_blank'
-                    style={{ fontWeight: '500', color: '#626B7F', textDecoration:'none', fontSize:'11px'}}
+					style={{ fontWeight: '500', color: '#626B7F', textDecoration: 'none', fontSize: '11px' }}
+					rel="noreferrer"
 				>
 					Cryptocurrency Prices
 				</a>
