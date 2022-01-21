@@ -8,7 +8,7 @@ export const TiersData = [
 			'Help center access',
 			'Email support',
 		],
-		buttonText: 'Sign up for free',
+		buttonText: 'Get started',
 		buttonVariant: 'outlined',
 	},
 	{
@@ -33,7 +33,7 @@ export const TiersData = [
 			'Help center access',
 			'Phone & email support',
 		],
-		buttonText: 'Contact us',
+		buttonText: 'Get started',
 		buttonVariant: 'outlined',
 	},
 ];

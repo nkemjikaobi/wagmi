@@ -68,7 +68,6 @@
     //         z-index: 4;
     //     }
     // }
-    @import '../../Assets/styles/shared-styles.scss';
     .wrapper {
         position: absolute;
         display: flex;
@@ -78,9 +77,10 @@
         left: 50%;
         transform: translate(-50%, -50%);
         color: color(White);
+        width: 100%;
 
         @include breakpoint('s') {
-            top: 45%;
+            top: 53%;
         }
 
         h1 {
@@ -103,7 +103,7 @@
             margin-bottom: 2rem;
 
             @include breakpoint('s') {
-                width: 53%;
+                width: 94%;
                 font-size: 1rem;
             }
         }

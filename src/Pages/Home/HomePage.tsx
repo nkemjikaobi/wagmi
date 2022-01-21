@@ -21,17 +21,36 @@ import Particles from 'react-tsparticles';
 import HorizontalLiveTicker from 'Components/HoriziontalLiveTicker/HorizontalLiveTicker';
 import CryptoCharts from 'Components/CryptoCharts/CryptoCharts';
 import CurrencyConverter from 'Components/CurrencyConverter/CurrencyConverter';
-
+import Modal from '@mui/material/Modal';
+import TextField from '@mui/material/TextField';
 
 const PricingContent = () => {
-	const particlesInit = (main: any) => {
-		console.log(main);
+		const [open, setOpen] = React.useState(false);
+		const handleOpen = () => setOpen(true);
+		const handleClose = () => setOpen(false);
+	
+		const particlesInit = (main: any) => {
+			console.log(main);
 
-		// you can initialize the tsParticles instance (main) here, adding custom shapes or presets
-	};
+			// you can initialize the tsParticles instance (main) here, adding custom shapes or presets
+		};
 
-	const particlesLoaded = (container: any) => {
-		console.log(container);
+		const particlesLoaded = (container: any) => {
+			console.log(container);
+		};
+		const doSomething = () => {
+			console.log("do something")
+		}
+	const style = {
+		position: 'absolute' as 'absolute',
+		top: '50%',
+		left: '50%',
+		transform: 'translate(-50%, -50%)',
+		width: 400,
+		bgcolor: 'background.paper',
+		border: '2px solid #000',
+		boxShadow: 24,
+		p: 4,
 	};
 	return (
 		<React.Fragment>
@@ -286,11 +305,42 @@ const PricingContent = () => {
 									<Button
 										fullWidth
 										variant={tier.buttonVariant as 'outlined' | 'contained'}
-										style={{textTransform: 'capitalize'}}
+										style={{ textTransform: 'capitalize' }}
+										onClick={handleOpen}
 									>
 										{tier.buttonText}
 									</Button>
 								</CardActions>
+								<Modal
+									open={open}
+									onClose={handleClose}
+									aria-labelledby="modal-modal-title"
+									aria-describedby="modal-modal-description"
+									>
+									<Box sx={style}>
+										<Typography id="modal-modal-title" variant="h6" component="h2" sx={{textAlign: 'center'}}>
+										Almost there!
+										</Typography>
+										<Typography id="modal-modal-description" sx={{ mt: 2 }}>
+											<TextField id="filled-basic" label="First Name" variant="filled" sx={{ width: '100%' }} />
+										</Typography>
+										<Typography id="modal-modal-description" sx={{ mt: 2 }}>
+											<TextField id="filled-basic" label="Last Name" variant="filled" sx={{ width: '100%' }} />
+										</Typography>
+										<Typography id="modal-modal-description" sx={{ mt: 2 }}>
+											<TextField id="filled-basic" label="Telegram Username" variant="filled" sx={{ width: '100%' }} />
+										</Typography>
+										<Typography id="modal-modal-description" sx={{ mt: 2 }}>
+											<TextField id="filled-basic" label="Email" variant="filled" sx={{ width: '100%' }} />
+										</Typography>
+										<Typography id="modal-modal-description" sx={{ mt: 2 }}>
+											<TextField id="filled-basic" label="Phone Number" variant="filled" sx={{ width: '100%' }} />
+										</Typography>
+										<Typography id="modal-modal-description" sx={{ mt: 2 }}>
+											<Button variant="outlined">Proceed to Payment</Button>
+										</Typography>
+									</Box>
+								</Modal>
 							</Card>
 						</Grid>
 					))}
