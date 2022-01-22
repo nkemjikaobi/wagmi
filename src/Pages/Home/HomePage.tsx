@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useState, useEffect } from 'react';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
@@ -23,12 +23,44 @@ import CryptoCharts from 'Components/CryptoCharts/CryptoCharts';
 import CurrencyConverter from 'Components/CurrencyConverter/CurrencyConverter';
 import Modal from '@mui/material/Modal';
 import TextField from '@mui/material/TextField';
+import USDTForm from 'Components/USDTForm/USDTForm';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const PricingContent = () => {
-		const [open, setOpen] = React.useState(false);
-		const handleOpen = () => setOpen(true);
-		const handleClose = () => setOpen(false);
+	const [open, setOpen] = useState(false);
+	const [showUsdtForm, setShowUsdtForm] = useState(false);
+	const [firstName, setFirstname] = useState('');
+	const [lastName, setLastName] = useState('');
+	const [telegramName, setTelegramName] = useState('');
+	const [email, setEmail] = useState('');
+	const [phoneNumber, setPhoneNumber] = useState('');
+	const [isEmpty, setIsEmpty] = useState<boolean>(true);
+
+	const handleOpen = () => setOpen(true);
+	const handleClose = () => {
+		setOpen(false);
+	};
 	
+	useEffect(() => checkForEmptyField());
+
+	const handleSubmit = (e: any) => {
+		e.preventDefault();
+		const userData = {
+			firstName, lastName, telegramName, email, phoneNumber
+		}
+		console.log({ userData });
+		if (userData) {
+			toast.info("Your data has been received");
+			handleShowUsdtForm()
+		}
+	}
+
+	
+	const handleUsdtClose = (visibility: boolean) => {
+		setShowUsdtForm(visibility);
+	}
+
 		const particlesInit = (main: any) => {
 			console.log(main);
 
@@ -38,26 +70,39 @@ const PricingContent = () => {
 		const particlesLoaded = (container: any) => {
 			console.log(container);
 		};
-		const doSomething = () => {
-			console.log("do something")
+	
+	const checkForEmptyField = () => {
+		if (firstName === '' || lastName === '' || email === '' || phoneNumber === '' || telegramName === '') {
+			return setIsEmpty(true);
 		}
-	const style = {
-		position: 'absolute' as 'absolute',
-		top: '50%',
-		left: '50%',
-		transform: 'translate(-50%, -50%)',
-		width: 400,
-		bgcolor: 'background.paper',
-		border: '2px solid #000',
-		boxShadow: 24,
-		p: 4,
-	};
+		else {
+			return setIsEmpty(false);
+		}
+		
+	}
+
+		const style = {
+			position: 'absolute' as 'absolute',
+			top: '50%',
+			left: '50%',
+			transform: 'translate(-50%, -50%)',
+			width: 400,
+			bgcolor: 'background.paper',
+			border: '2px solid #000',
+			boxShadow: 24,
+			p: 4,
+		};
+		const handleShowUsdtForm = () => {
+			setOpen(false);
+			setShowUsdtForm(true);
+		};
 	return (
 		<React.Fragment>
 			<GlobalStyles
 				styles={{ ul: { margin: 0, padding: 0, listStyle: 'none' } }}
 			/>
 			<CssBaseline />
+			<ToastContainer />
 			<AppBar
 				className={styles.navWrapper}
 				position='fixed'
@@ -67,18 +112,9 @@ const PricingContent = () => {
 			>
 				<Toolbar sx={{ flexWrap: 'wrap' }}>
 					<Typography variant='h6' color='inherit' noWrap sx={{ flexGrow: 1 }}>
-						Company name
+						WAGMI
 					</Typography>
 					<nav>
-						<Link
-							className={styles.links}
-							variant='button'
-							color='text.primary'
-							href='#'
-							sx={{ my: 1, mx: 1.5 }}
-						>
-							Features
-						</Link>
 						<Link
 							className={styles.links}
 							variant='button'
@@ -98,8 +134,8 @@ const PricingContent = () => {
 							Support
 						</Link>
 					</nav>
-					<Button href='#' variant='outlined' sx={{ my: 1, mx: 1.5 }} style={{ textTransform: 'capitalize'}}>
-						Login
+					<Button onClick={() => handleShowUsdtForm()} href='#' variant='outlined' sx={{ my: 1, mx: 1.5 }} style={{ textTransform: 'capitalize'}}>
+						I have Paid?
 					</Button>
 				</Toolbar>
 			</AppBar>
@@ -203,7 +239,7 @@ const PricingContent = () => {
 					</div>
 				</div>
 			</div>
-			<HorizontalLiveTicker />
+			{/* <HorizontalLiveTicker /> */}
 			{/* Background Image End */}
 			<div style={{background: '#001e3c'}}>
 
@@ -322,34 +358,35 @@ const PricingContent = () => {
 										Almost there!
 										</Typography>
 										<Typography id="modal-modal-description" sx={{ mt: 2 }}>
-											<TextField id="filled-basic" label="First Name" variant="filled" sx={{ width: '100%' }} />
+											<TextField id="filled-basic" name="firstName" required type="text" value={firstName} onChange={(e: any) => setFirstname(e.target.value)} label="First Name" variant="filled" sx={{ width: '100%' }} />
 										</Typography>
 										<Typography id="modal-modal-description" sx={{ mt: 2 }}>
-											<TextField id="filled-basic" label="Last Name" variant="filled" sx={{ width: '100%' }} />
+											<TextField id="filled-basic" name="lastName" required type="text" label="Last Name" value={lastName} onChange={(e: any) => setLastName(e.target.value)} variant="filled" sx={{ width: '100%' }} />
 										</Typography>
 										<Typography id="modal-modal-description" sx={{ mt: 2 }}>
-											<TextField id="filled-basic" label="Telegram Username" variant="filled" sx={{ width: '100%' }} />
+											<TextField id="filled-basic" name="telegramName" required type="text" label="Telegram Username" value={telegramName} onChange={(e: any) => setTelegramName(e.target.value)} variant="filled" sx={{ width: '100%' }} />
 										</Typography>
 										<Typography id="modal-modal-description" sx={{ mt: 2 }}>
-											<TextField id="filled-basic" label="Email" variant="filled" sx={{ width: '100%' }} />
+											<TextField id="filled-basic" name="email" required label="Email" type="email" value={email} onChange={(e: any) => setEmail(e.target.value)} variant="filled" sx={{ width: '100%' }} />
 										</Typography>
 										<Typography id="modal-modal-description" sx={{ mt: 2 }}>
-											<TextField id="filled-basic" label="Phone Number" variant="filled" sx={{ width: '100%' }} />
+											<TextField id="filled-basic" name="phoneNumber" required type="number" label="Phone Number" value={phoneNumber} onChange={(e: any) => setPhoneNumber(e.target.value)} variant="filled" sx={{ width: '100%' }} />
 										</Typography>
 										<Typography id="modal-modal-description" sx={{ mt: 2 }}>
-											<Button variant="outlined">Proceed to Payment</Button>
+											<Button disabled={isEmpty} variant="outlined" onClick={(e: any) => handleSubmit(e)}>Proceed to Payment</Button>
 										</Typography>
 									</Box>
 								</Modal>
+								<USDTForm showUsdtForm={showUsdtForm} handleUsdtClose={handleUsdtClose} />
 							</Card>
 						</Grid>
 					))}
 				</Grid>
 				</Container>
-				<div className={styles.charts}>
-					<CryptoCharts />
+				{/* <div className={styles.charts}>
+					<CryptoCharts /> */}
 					{/* <CurrencyConverter /> */}
-				</div>
+				{/* </div> */}
 			{/* Footer */}
 			<Container
 				maxWidth='md'

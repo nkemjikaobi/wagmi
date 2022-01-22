@@ -12,7 +12,7 @@ const CurrencyConverter = () => {
             textSizeAdjust: '100%', boxShadow: 'inset 0 - 20px 0 0 #262B38',
             padding: '0px', margin: '0px', width: '100%'
         }}>
-            <div style={{ height: '413px', padding: '0px', margin: '0px', width: '100%' }}>
+            {/* <div style={{ height: '413px', padding: '0px', margin: '0px', width: '100%' }}>
                 <iframe title="d" src="https://widget.coinlib.io/widget?type=full_v2&theme=dark&cnt=6&pref_coin_id=1505&graph=yes" width="100%" height="409px"
                     scrolling="auto" marginWidth={0} marginHeight={0}
                     frameBorder={0} style={{ border: '0', margin: '0', padding: '0' }}>
@@ -22,7 +22,8 @@ const CurrencyConverter = () => {
                     fontFamily: 'Verdana, Tahoma, Arial, sans-serif'
             }}><a href="https://coinlib.io" rel="noreferrer" target="_blank"
                     style={{ fontWeight: '500', color: '#626B7F', textDecoration: 'none', fontSize: '11px' }}>
-                    Cryptocurrency Prices</a>&nbsp;by Coinlib</div></div >
+                    Cryptocurrency Prices</a>&nbsp;by Coinlib</div> */}
+        </div >
 
     )
 }
