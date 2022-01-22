@@ -26,6 +26,14 @@ import TextField from '@mui/material/TextField';
 import USDTForm from 'Components/USDTForm/USDTForm';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import LoadingButton from '@mui/lab/LoadingButton';
+import SaveIcon from '@mui/icons-material/Save';
+import NativeSelect from '@mui/material/NativeSelect';
+import InputLabel from '@mui/material/InputLabel';
+import FormControl from '@mui/material/FormControl';
+import InputBase from '@mui/material/InputBase';
+import { styled } from '@mui/material/styles';
+
 
 const PricingContent = () => {
 	const [open, setOpen] = useState(false);
@@ -36,7 +44,12 @@ const PricingContent = () => {
 	const [email, setEmail] = useState('');
 	const [phoneNumber, setPhoneNumber] = useState('');
 	const [isEmpty, setIsEmpty] = useState<boolean>(true);
-	const [user, setUser] = useState({});
+	const [isSaving, setIsSaving] = useState<boolean>(false);
+	const [price, setPrice] = useState('');
+
+	const handleChange = (event: { target: { value: string } }) => {
+    setPrice(event.target.value);
+  };
 
 	const handleOpen = () => setOpen(true);
 	const handleClose = () => {
@@ -45,15 +58,62 @@ const PricingContent = () => {
 	
 	useEffect(() => checkForEmptyField());
 
-	const handleSubmit = (e: any) => {
+
+const BootstrapInput = styled(InputBase)(({ theme }) => ({
+  'label + &': {
+    marginTop: theme.spacing(3),
+  },
+  '& .MuiInputBase-input': {
+    borderRadius: 4,
+    position: 'relative',
+    backgroundColor: theme.palette.background.paper,
+    border: '1px solid #ced4da',
+    fontSize: 16,
+    padding: '10px 26px 10px 12px',
+    transition: theme.transitions.create(['border-color', 'box-shadow']),
+    // Use the system font instead of the default Roboto font.
+    fontFamily: [
+      '-apple-system',
+      'BlinkMacSystemFont',
+      '"Segoe UI"',
+      'Roboto',
+      '"Helvetica Neue"',
+      'Arial',
+      'sans-serif',
+      '"Apple Color Emoji"',
+      '"Segoe UI Emoji"',
+      '"Segoe UI Symbol"',
+    ].join(','),
+    '&:focus': {
+      borderRadius: 4,
+      borderColor: '#80bdff',
+      boxShadow: '0 0 0 0.2rem rgba(0,123,255,.25)',
+    },
+  },
+}));
+
+	const handleSubmit = async (e: any) => {
 		e.preventDefault();
+		setIsSaving(true);
 		const userData = {
-			firstName, lastName, telegramName, email, phoneNumber
+			price, firstName, lastName, telegramName, email, phoneNumber, date: new Date().toString()
 		}
-		if (userData) {
-			setUser(userData);
-			toast.info("Your data has been received");
-			handleShowUsdtForm()
+		try {
+			const res = await fetch("https://sheet.best/api/sheets/bcbcca66-6b28-4050-9df7-e2a11a500adf", {
+				method: 'POST',
+				headers: {
+					"Content-Type": "application/json"
+				},
+				body: JSON.stringify(userData)
+			})
+			if (res.ok) {
+				setIsSaving(false)
+				toast.info("Your data has been received");
+				handleShowUsdtForm()
+			}
+		}
+		catch (error) {
+			console.log(error);
 		}
 	}
 
@@ -73,7 +133,7 @@ const PricingContent = () => {
 		};
 	
 	const checkForEmptyField = () => {
-		if (firstName === '' || lastName === '' || email === '' || phoneNumber === '' || telegramName === '') {
+		if (firstName === '' || lastName === '' || email === '' || phoneNumber === '' || telegramName === '' || price === '') {
 			return setIsEmpty(true);
 		}
 		else {
@@ -358,6 +418,23 @@ const PricingContent = () => {
 										<Typography id="modal-modal-title" variant="h6" component="h2" sx={{textAlign: 'center'}}>
 										Almost there!
 										</Typography>
+										<FormControl sx={{ m: 1, width: '100%' }} variant="standard">
+											<InputLabel id="demo-customized-select-native" htmlFor="demo-customized-select-native" sx={{ position: 'relative' }}>Price</InputLabel>
+											<NativeSelect
+												id="demo-customized-select-native"
+												value={price}
+												onChange={handleChange}
+												input={<BootstrapInput />}
+												defaultValue="$15"
+												inputProps={{ 'aria-label': 'Price' }}
+
+												>
+												<option aria-label="None" value="" />
+												<option value='$10'>Free -$0</option>
+												<option value='$20'>Pro -$15</option>
+												<option value='$30'>Enterprise -$30</option>
+											</NativeSelect>
+										</FormControl>
 										<Typography id="modal-modal-description" sx={{ mt: 2 }}>
 											<TextField id="filled-basic" name="firstName" required type="text" value={firstName} onChange={(e: any) => setFirstname(e.target.value)} label="First Name" variant="filled" sx={{ width: '100%' }} />
 										</Typography>
@@ -374,7 +451,20 @@ const PricingContent = () => {
 											<TextField id="filled-basic" name="phoneNumber" required type="number" label="Phone Number" value={phoneNumber} onChange={(e: any) => setPhoneNumber(e.target.value)} variant="filled" sx={{ width: '100%' }} />
 										</Typography>
 										<Typography id="modal-modal-description" sx={{ mt: 2 }}>
-											<Button disabled={isEmpty} variant="outlined" onClick={(e: any) => handleSubmit(e)}>Proceed to Payment</Button>
+											{
+												isSaving ?
+													<LoadingButton
+													loading
+													loadingPosition="start"
+													startIcon={<SaveIcon />}
+													variant="outlined"
+													>
+													Saving...
+												</LoadingButton> :
+												<Button disabled={isEmpty} variant="outlined" onClick={(e: any) => handleSubmit(e)}>Proceed to Payment</Button>
+
+											}
+											
 										</Typography>
 									</Box>
 								</Modal>

@@ -13,8 +13,8 @@ const CopyWright = (props: any) => {
 			{...props}
 		>
 			{'Copyright © '}
-			<Link color='inherit' href='https://mui.com/' style={{color: '#66b2ff', textDecoration: 'none'}}>
-				Your Website
+			<Link color='inherit' href='#' style={{color: '#66b2ff', textDecoration: 'none'}}>
+				WAGMI
 			</Link>{' '}
 			{new Date().getFullYear()}
 			{'.'}
