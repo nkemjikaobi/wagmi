@@ -4,8 +4,9 @@ import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { useHistory } from "react-router-dom";
 
 interface IUSDTForm {
     showUsdtForm: boolean,
@@ -15,7 +16,7 @@ interface IUSDTForm {
 const USDTForm = (props: IUSDTForm) => {
     const [showId, setShowId] = useState<boolean>(false);
     const [transactionId, setTransactionId] = useState <string>('');
-
+    const history = useHistory();
 
     const style = {
 		position: 'absolute' as 'absolute',
@@ -36,9 +37,10 @@ const USDTForm = (props: IUSDTForm) => {
             return toast.error("Transaction Id is required");
         }
         if (transactionId !== '') {
-            console.log(transactionId);
             toast.info("ID received..Redirecting to whatsapp");
             props.handleUsdtClose(false);
+            const win: any = window.open(`https://wa.me/2348027623156?text=Hello, I just made a payment to your USDT address. My Transaction Id is ${transactionId}`, "_blank");
+            win.focus();
         }
     };
     return (

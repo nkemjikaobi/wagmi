@@ -36,6 +36,7 @@ const PricingContent = () => {
 	const [email, setEmail] = useState('');
 	const [phoneNumber, setPhoneNumber] = useState('');
 	const [isEmpty, setIsEmpty] = useState<boolean>(true);
+	const [user, setUser] = useState({});
 
 	const handleOpen = () => setOpen(true);
 	const handleClose = () => {
@@ -49,8 +50,8 @@ const PricingContent = () => {
 		const userData = {
 			firstName, lastName, telegramName, email, phoneNumber
 		}
-		console.log({ userData });
 		if (userData) {
+			setUser(userData);
 			toast.info("Your data has been received");
 			handleShowUsdtForm()
 		}
