@@ -34,6 +34,7 @@ import FormControl from '@mui/material/FormControl';
 import InputBase from '@mui/material/InputBase';
 import { styled } from '@mui/material/styles';
 import { useHistory } from "react-router-dom";
+import { AiOutlineClose }  from "react-icons/ai"
 
 
 const PricingContent = () => {
@@ -178,24 +179,6 @@ const BootstrapInput = styled(InputBase)(({ theme }) => ({
 						WAGMI
 					</Typography>
 					<nav>
-						<Link
-							className={styles.links}
-							variant='button'
-							color='text.primary'
-							href='#'
-							sx={{ my: 1, mx: 1.5 }}
-						>
-							Enterprise
-						</Link>
-						<Link
-							className={styles.links}
-							variant='button'
-							color='text.primary'
-							href='#'
-							sx={{ my: 1, mx: 1.5 }}
-						>
-							Support
-						</Link>
 					</nav>
 					<Button onClick={() => handleShowUsdtForm()} href='#' variant='outlined' sx={{ my: 1, mx: 1.5 }} style={{ textTransform: 'capitalize'}}>
 						I have Paid?
@@ -330,9 +313,7 @@ const BootstrapInput = styled(InputBase)(({ theme }) => ({
 						component='p'
 						style={{color: '#b2bac2'}}
 				>
-					Quickly build an effective pricing table for your potential customers
-					with this layout. It&apos;s built with default MUI components with
-					little customization.
+					Our plans and benefits.
 				</Typography>
 			</Container>
 			{/* End hero unit */}
@@ -417,9 +398,19 @@ const BootstrapInput = styled(InputBase)(({ theme }) => ({
 									aria-describedby="modal-modal-description"
 									>
 									<Box sx={style}>
-										<Typography id="modal-modal-title" variant="h6" component="h2" sx={{textAlign: 'center'}}>
-										Almost there!
-										</Typography>
+										<div style={{ display: 'flex', justifyContent: 'space-around', alignItems: 'center' }}>
+											<Typography id="modal-modal-title"
+												variant="h6" component="h2"
+												sx={{ textAlign: 'center' }}>
+												Almost there!
+												
+
+											</Typography>
+											<div onClick={handleClose} style={{ cursor: 'pointer' }}>
+												<AiOutlineClose />
+											</div>
+										</div>
+										
 										<FormControl sx={{ m: 1, width: '100%' }} variant="standard">
 											<InputLabel id="demo-customized-select-native" htmlFor="demo-customized-select-native" sx={{ position: 'relative' }}>Price</InputLabel>
 											<NativeSelect
@@ -489,7 +480,7 @@ const BootstrapInput = styled(InputBase)(({ theme }) => ({
 					py: [3, 6],
 				}}
 			>
-				<Grid container spacing={4} justifyContent='space-evenly'>
+				{/* <Grid container spacing={4} justifyContent='space-evenly'>
 					{FootersData.map(footer => (
 						<Grid item xs={6} sm={3} key={footer.title}>
 							<Typography variant='h6' color='text.primary' gutterBottom style={{color: 'white'}}>
@@ -506,7 +497,7 @@ const BootstrapInput = styled(InputBase)(({ theme }) => ({
 							</ul>
 						</Grid>
 					))}
-				</Grid>
+				</Grid> */}
 				<CopyWright sx={{ mt: 5 }} />
 				</Container>
 				{/* End footer */}

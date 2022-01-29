@@ -7,6 +7,7 @@ import Button from '@mui/material/Button';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useHistory } from "react-router-dom";
+import { AiOutlineClose }  from "react-icons/ai"
 
 interface IUSDTForm {
     showUsdtForm: boolean,
@@ -51,9 +52,16 @@ const USDTForm = (props: IUSDTForm) => {
             aria-describedby="modal-modal-description"
         >
             <Box sx={style}>
-                <Typography id="modal-modal-title" variant="h6" component="h2" sx={{textAlign: 'center'}}>
-                Pay to the USDT address below
-                </Typography>
+                <div style={{ display: 'flex', justifyContent: 'space-around', alignItems: 'center' }}>
+					<Typography id="modal-modal-title" variant="h6" component="h2" sx={{textAlign: 'center'}}>
+                        Pay to the USDT address below
+                    </Typography>
+                    <div onClick={() => props.handleUsdtClose(false)} style={{ cursor: 'pointer' }}>
+                        <AiOutlineClose />
+                    </div>
+                </div>
+										
+                
                 <Typography id="modal-modal-description" sx={{ mt: 2 }}>
                     <TextField disabled id="filled-basic" label="USDT" value="1xbccshjahdhf7r47263xr3rtr3tr633ew" variant="filled" sx={{ width: '100%' }} />
                 </Typography>
