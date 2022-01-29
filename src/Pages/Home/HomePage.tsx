@@ -14,7 +14,7 @@ import Typography from '@mui/material/Typography';
 import Link from '@mui/material/Link';
 import GlobalStyles from '@mui/material/GlobalStyles';
 import Container from '@mui/material/Container';
-import { FootersData, TiersData } from 'Constants';
+import { FootersData, PlansData, TiersData } from 'Constants';
 import CopyWright from 'Components/CopyWright/CopyWright';
 import styles from "./HomePage.module.scss";
 import Particles from 'react-tsparticles';
@@ -33,6 +33,7 @@ import InputLabel from '@mui/material/InputLabel';
 import FormControl from '@mui/material/FormControl';
 import InputBase from '@mui/material/InputBase';
 import { styled } from '@mui/material/styles';
+import { useHistory } from "react-router-dom";
 
 
 const PricingContent = () => {
@@ -46,6 +47,7 @@ const PricingContent = () => {
 	const [isEmpty, setIsEmpty] = useState<boolean>(true);
 	const [isSaving, setIsSaving] = useState<boolean>(false);
 	const [price, setPrice] = useState('');
+	const history = useHistory();
 
 	const handleChange = (event: { target: { value: string } }) => {
     setPrice(event.target.value);
@@ -172,7 +174,7 @@ const BootstrapInput = styled(InputBase)(({ theme }) => ({
 				sx={{ borderBottom: theme => `1px solid ${theme.palette.divider}` }}
 			>
 				<Toolbar sx={{ flexWrap: 'wrap' }}>
-					<Typography variant='h6' color='inherit' noWrap sx={{ flexGrow: 1 }}>
+					<Typography variant='h6' color='inherit' noWrap sx={{ flexGrow: 1, cursor: 'pointer' }} onClick={() => history.push("/")}>
 						WAGMI
 					</Typography>
 					<nav>
@@ -300,7 +302,7 @@ const BootstrapInput = styled(InputBase)(({ theme }) => ({
 					</div>
 				</div>
 			</div>
-			{/* <HorizontalLiveTicker /> */}
+			<HorizontalLiveTicker />
 			{/* Background Image End */}
 			<div style={{background: '#001e3c'}}>
 
@@ -336,7 +338,7 @@ const BootstrapInput = styled(InputBase)(({ theme }) => ({
 			{/* End hero unit */}
 			<Container maxWidth='md' component='main' style={{background: '#001e3c'}}>
 				<Grid container spacing={5} alignItems='flex-end'>
-					{TiersData.map(tier => (
+					{PlansData.map(tier => (
 						// Enterprise card is full width at sm breakpoint
 						<Grid
 							item
@@ -351,7 +353,7 @@ const BootstrapInput = styled(InputBase)(({ theme }) => ({
 									title={tier.title}
 									subheader={tier.subheader}
 									titleTypographyProps={{ align: 'center' }}
-									action={tier.title === 'Pro' ? <StarIcon /> : null}
+									action={tier.title === 'Futures Trading Package' ? <StarIcon /> : null}
 									subheaderTypographyProps={{
 										align: 'center',
 										color: '#b2bac2',
@@ -379,21 +381,21 @@ const BootstrapInput = styled(InputBase)(({ theme }) => ({
 											color='text.primary'
 											style={{color: '#fff'}}
 										>
-											${tier.price}
+											${tier.price} <hr />
 										</Typography>
 										<Typography variant='h6' color='text.secondary' style={{color: '#b2bac2'}}>
 											/mo
 										</Typography>
 									</Box>
 									<ul>
-										{tier.description.map(line => (
+										{tier.description.map((line: any) => (
 											<Typography
 												component='li'
 												variant='subtitle1'
 												align='center'
 												key={line}
 											>
-												{line}
+												{line} <hr />
 											</Typography>
 										))}
 									</ul>
@@ -425,7 +427,6 @@ const BootstrapInput = styled(InputBase)(({ theme }) => ({
 												value={price}
 												onChange={handleChange}
 												input={<BootstrapInput />}
-												defaultValue="$15"
 												inputProps={{ 'aria-label': 'Price' }}
 
 												>
@@ -474,10 +475,10 @@ const BootstrapInput = styled(InputBase)(({ theme }) => ({
 					))}
 				</Grid>
 				</Container>
-				{/* <div className={styles.charts}>
-					<CryptoCharts /> */}
+				<div className={styles.charts}>
+					<CryptoCharts />
 					{/* <CurrencyConverter /> */}
-				{/* </div> */}
+				</div>
 			{/* Footer */}
 			<Container
 				maxWidth='md'
