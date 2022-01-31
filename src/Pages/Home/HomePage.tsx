@@ -271,13 +271,11 @@ const BootstrapInput = styled(InputBase)(({ theme }) => ({
 						}}
 					/>  */}
 				<div className={styles.wrapper}>
-					<h1>
-						Invest In The Future<span>Of Currency</span>{' '}
+					<h1 style={{ margin: '0px' }}>
+						WAGMI
 					</h1>
 					<p>
-						We offers users a fully operational long-term rental platform. It
-						plans to leverages blockchain
-						<br /> technology to ensure seamless rental experience.
+						We. All. Gonna. Make. It.
 					</p>
 					<div className={styles.buttonWrapper}>
 						<button>Crypto Consultation</button>
