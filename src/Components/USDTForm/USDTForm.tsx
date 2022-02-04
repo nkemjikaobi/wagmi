@@ -40,7 +40,6 @@ const USDTForm = (props: IUSDTForm) => {
             const data = await res.json();
             setWalletAddress(data[0].walletAddress);
             setUsername(data[0].username)
-            console.log(data);
         } catch (error) {
             console.log(error)
         }
@@ -48,7 +47,7 @@ const USDTForm = (props: IUSDTForm) => {
     };
     
     useEffect(() => {
-        //getData();
+        getData();
     },[])
 	const handleClick = () => {
 		if (!showId) {
@@ -58,7 +57,7 @@ const USDTForm = (props: IUSDTForm) => {
 			return toast.error('Transaction Id is required');
 		}
 		if (transactionId !== '') {
-			toast.info('ID received..Redirecting to whatsapp');
+			toast.info('ID received..Redirecting to telegram');
             props.handleUsdtClose(false);
 			// const win: any = window.open(
 			// 	`https://wa.me/2348027623156?text=Hello, I just made a payment to your USDT address. My Transaction Id is ${transactionId}`,
