@@ -11,7 +11,6 @@ import Grid from '@mui/material/Grid';
 import StarIcon from '@mui/icons-material/StarBorder';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
-import Link from '@mui/material/Link';
 import GlobalStyles from '@mui/material/GlobalStyles';
 import Container from '@mui/material/Container';
 import { FootersData, PlansData, TiersData } from 'Constants';
@@ -34,7 +33,8 @@ import FormControl from '@mui/material/FormControl';
 import InputBase from '@mui/material/InputBase';
 import { styled } from '@mui/material/styles';
 import { useHistory } from "react-router-dom";
-import { AiOutlineClose }  from "react-icons/ai"
+import { AiOutlineClose } from "react-icons/ai"
+import { Link } from "react-router-dom"
 
 
 const PricingContent = () => {
@@ -175,12 +175,23 @@ const BootstrapInput = styled(InputBase)(({ theme }) => ({
 				sx={{ borderBottom: theme => `1px solid ${theme.palette.divider}` }}
 			>
 				<Toolbar sx={{ flexWrap: 'wrap' }}>
-					<Typography variant='h6' color='inherit' noWrap sx={{ flexGrow: 1, cursor: 'pointer' }} onClick={() => history.push("/")}>
+					<Typography
+						variant='h6'
+						color='inherit'
+						noWrap
+						sx={{ flexGrow: 1, cursor: 'pointer' }}
+						onClick={() => history.push('/')}
+					>
 						WAGMI
 					</Typography>
-					<nav>
-					</nav>
-					<Button onClick={() => handleShowUsdtForm()} href='#' variant='outlined' sx={{ my: 1, mx: 1.5 }} style={{ textTransform: 'capitalize'}}>
+					<nav></nav>
+					<Button
+						onClick={() => handleShowUsdtForm()}
+						href='#'
+						variant='outlined'
+						sx={{ my: 1, mx: 1.5 }}
+						style={{ textTransform: 'capitalize' }}
+					>
 						I have Paid?
 					</Button>
 				</Toolbar>
@@ -271,214 +282,297 @@ const BootstrapInput = styled(InputBase)(({ theme }) => ({
 						}}
 					/>  */}
 				<div className={styles.wrapper}>
-					<h1 style={{ margin: '0px' }}>
-						WAGMI
-					</h1>
-					<p>
-						We. All. Gonna. Make. It.
-					</p>
+					<h1 style={{ margin: '0px' }}>WAGMI</h1>
+					<p>We. All. Gonna. Make. It.</p>
 					<div className={styles.buttonWrapper}>
 						<button>Crypto Consultation</button>
-						<button>Learn More</button>
+						<a href='https://chat.whatsapp.com/D9UDAl9VQCD9OXBjt4TGqj'  target="_blank" rel="noreferrer">
+							Join Our Group
+						</a>
 					</div>
 				</div>
 			</div>
 			<HorizontalLiveTicker />
 			{/* Background Image End */}
-			<div style={{background: '#001e3c'}}>
-
-			<Container
-				disableGutters
-				maxWidth='sm'
-				component='main'
-				sx={{ pt: 8, pb: 6 }}
-				style={{background: '#001e3c'}}
-			>
-				<Typography
-					component='h1'
-					variant='h2'
-					align='center'
-					color='text.primary'
-					gutterBottom
-					style={{color: 'white'}}
+			<div style={{ background: '#001e3c' }}>
+				<Container
+					disableGutters
+					maxWidth='sm'
+					component='main'
+					sx={{ pt: 8, pb: 6 }}
+					style={{ background: '#001e3c' }}
 				>
-					Pricing
-				</Typography>
-				<Typography
-					variant='h5'
-					align='center'
-					color='text.secondary'
+					<Typography
+						component='h1'
+						variant='h2'
+						align='center'
+						color='text.primary'
+						gutterBottom
+						style={{ color: 'white' }}
+					>
+						Pricing
+					</Typography>
+					<Typography
+						variant='h5'
+						align='center'
+						color='text.secondary'
 						component='p'
-						style={{color: '#b2bac2'}}
+						style={{ color: '#b2bac2' }}
+					>
+						Our plans and benefits.
+					</Typography>
+				</Container>
+				{/* End hero unit */}
+				<Container
+					maxWidth='md'
+					component='main'
+					style={{ background: '#001e3c' }}
 				>
-					Our plans and benefits.
-				</Typography>
-			</Container>
-			{/* End hero unit */}
-			<Container maxWidth='md' component='main' style={{background: '#001e3c'}}>
-				<Grid container spacing={5} alignItems='flex-end'>
-					{PlansData.map(tier => (
-						// Enterprise card is full width at sm breakpoint
-						<Grid
-							item
-							key={tier.title}
-							xs={12}
-							sm={tier.title === 'Enterprise' ? 12 : 6}
-							md={4}
-							
-						>
-							<Card>
-								<CardHeader
-									title={tier.title}
-									subheader={tier.subheader}
-									titleTypographyProps={{ align: 'center' }}
-									action={tier.title === 'Futures Trading Package' ? <StarIcon /> : null}
-									subheaderTypographyProps={{
-										align: 'center',
-										color: '#b2bac2',
-									}}
-									sx={{
-										backgroundColor: theme =>
-											theme.palette.mode === 'light'
-												? theme.palette.grey[200]
-												: theme.palette.grey[700],
-									}}
-									style={{background: '#3e5060', color: '#66b2ff'}}
-								/>
-								<CardContent style={{background: '#0a1929', color: '#fff'}}>
-									<Box
-										sx={{
-											display: 'flex',
-											justifyContent: 'center',
-											alignItems: 'baseline',
-											mb: 2,
+					<Grid container spacing={5} alignItems='flex-end'>
+						{PlansData.map(tier => (
+							// Enterprise card is full width at sm breakpoint
+							<Grid
+								item
+								key={tier.title}
+								xs={12}
+								sm={tier.title === 'Enterprise' ? 12 : 6}
+								md={4}
+							>
+								<Card>
+									<CardHeader
+										title={tier.title}
+										subheader={tier.subheader}
+										titleTypographyProps={{ align: 'center' }}
+										action={
+											tier.title === 'Futures Trading Package' ? (
+												<StarIcon />
+											) : null
+										}
+										subheaderTypographyProps={{
+											align: 'center',
+											color: '#b2bac2',
 										}}
-									>
-										<Typography
-											component='h2'
-											variant='h3'
-											color='text.primary'
-											style={{color: '#fff'}}
+										sx={{
+											backgroundColor: theme =>
+												theme.palette.mode === 'light'
+													? theme.palette.grey[200]
+													: theme.palette.grey[700],
+										}}
+										style={{ background: '#3e5060', color: '#66b2ff' }}
+									/>
+									<CardContent style={{ background: '#0a1929', color: '#fff' }}>
+										<Box
+											sx={{
+												display: 'flex',
+												justifyContent: 'center',
+												alignItems: 'baseline',
+												mb: 2,
+											}}
 										>
-											${tier.price} <hr />
-										</Typography>
-										<Typography variant='h6' color='text.secondary' style={{color: '#b2bac2'}}>
-											/mo
-										</Typography>
-									</Box>
-									<ul>
-										{tier.description.map((line: any) => (
 											<Typography
-												component='li'
-												variant='subtitle1'
-												align='center'
-												key={line}
+												component='h2'
+												variant='h3'
+												color='text.primary'
+												style={{ color: '#fff' }}
 											>
-												{line} <hr />
+												${tier.price} <hr />
 											</Typography>
-										))}
-									</ul>
-								</CardContent>
-								<CardActions style={{background: '#0a1929'}}>
-									<Button
-										fullWidth
-										variant={tier.buttonVariant as 'outlined' | 'contained'}
-										style={{ textTransform: 'capitalize' }}
-										onClick={handleOpen}
-									>
-										{tier.buttonText}
-									</Button>
-								</CardActions>
-								<Modal
-									open={open}
-									onClose={handleClose}
-									aria-labelledby="modal-modal-title"
-									aria-describedby="modal-modal-description"
-									>
-									<Box sx={style}>
-										<div style={{ display: 'flex', justifyContent: 'space-around', alignItems: 'center' }}>
-											<Typography id="modal-modal-title"
-												variant="h6" component="h2"
-												sx={{ textAlign: 'center' }}>
-												Almost there!
-												
-
+											<Typography
+												variant='h6'
+												color='text.secondary'
+												style={{ color: '#b2bac2' }}
+											>
+												/mo
 											</Typography>
-											<div onClick={handleClose} style={{ cursor: 'pointer' }}>
-												<AiOutlineClose />
-											</div>
-										</div>
-										
-										<FormControl sx={{ m: 1, width: '100%' }} variant="standard">
-											<InputLabel id="demo-customized-select-native" htmlFor="demo-customized-select-native" sx={{ position: 'relative' }}>Price</InputLabel>
-											<NativeSelect
-												id="demo-customized-select-native"
-												value={price}
-												onChange={handleChange}
-												input={<BootstrapInput />}
-												inputProps={{ 'aria-label': 'Price' }}
-
+										</Box>
+										<ul>
+											{tier.description.map((line: any) => (
+												<Typography
+													component='li'
+													variant='subtitle1'
+													align='center'
+													key={line}
 												>
-												<option aria-label="None" value="" />
-												<option value='$10'>Free -$0</option>
-												<option value='$20'>Pro -$15</option>
-												<option value='$30'>Enterprise -$30</option>
-											</NativeSelect>
-										</FormControl>
-										<Typography id="modal-modal-description" sx={{ mt: 2 }}>
-											<TextField id="filled-basic" name="firstName" required type="text" value={firstName} onChange={(e: any) => setFirstname(e.target.value)} label="First Name" variant="filled" sx={{ width: '100%' }} />
-										</Typography>
-										<Typography id="modal-modal-description" sx={{ mt: 2 }}>
-											<TextField id="filled-basic" name="lastName" required type="text" label="Last Name" value={lastName} onChange={(e: any) => setLastName(e.target.value)} variant="filled" sx={{ width: '100%' }} />
-										</Typography>
-										<Typography id="modal-modal-description" sx={{ mt: 2 }}>
-											<TextField id="filled-basic" name="telegramName" required type="text" label="Telegram Username" value={telegramName} onChange={(e: any) => setTelegramName(e.target.value)} variant="filled" sx={{ width: '100%' }} />
-										</Typography>
-										<Typography id="modal-modal-description" sx={{ mt: 2 }}>
-											<TextField id="filled-basic" name="email" required label="Email" type="email" value={email} onChange={(e: any) => setEmail(e.target.value)} variant="filled" sx={{ width: '100%' }} />
-										</Typography>
-										<Typography id="modal-modal-description" sx={{ mt: 2 }}>
-											<TextField id="filled-basic" name="phoneNumber" required type="number" label="Phone Number" value={phoneNumber} onChange={(e: any) => setPhoneNumber(e.target.value)} variant="filled" sx={{ width: '100%' }} />
-										</Typography>
-										<Typography id="modal-modal-description" sx={{ mt: 2 }}>
-											{
-												isSaving ?
-													<LoadingButton
-													loading
-													loadingPosition="start"
-													startIcon={<SaveIcon />}
-													variant="outlined"
-													>
-													Saving...
-												</LoadingButton> :
-												<Button disabled={isEmpty} variant="outlined" onClick={(e: any) => handleSubmit(e)}>Proceed to Payment</Button>
+													{line} <hr />
+												</Typography>
+											))}
+										</ul>
+									</CardContent>
+									<CardActions style={{ background: '#0a1929' }}>
+										<Button
+											fullWidth
+											variant={tier.buttonVariant as 'outlined' | 'contained'}
+											style={{ textTransform: 'capitalize' }}
+											onClick={handleOpen}
+										>
+											{tier.buttonText}
+										</Button>
+									</CardActions>
+									<Modal
+										open={open}
+										onClose={handleClose}
+										aria-labelledby='modal-modal-title'
+										aria-describedby='modal-modal-description'
+									>
+										<Box sx={style}>
+											<div
+												style={{
+													display: 'flex',
+													justifyContent: 'space-around',
+													alignItems: 'center',
+												}}
+											>
+												<Typography
+													id='modal-modal-title'
+													variant='h6'
+													component='h2'
+													sx={{ textAlign: 'center' }}
+												>
+													Almost there!
+												</Typography>
+												<div
+													onClick={handleClose}
+													style={{ cursor: 'pointer' }}
+												>
+													<AiOutlineClose />
+												</div>
+											</div>
 
-											}
-											
-										</Typography>
-									</Box>
-								</Modal>
-								<USDTForm showUsdtForm={showUsdtForm} handleUsdtClose={handleUsdtClose} />
-							</Card>
-						</Grid>
-					))}
-				</Grid>
+											<FormControl
+												sx={{ m: 1, width: '100%' }}
+												variant='standard'
+											>
+												<InputLabel
+													id='demo-customized-select-native'
+													htmlFor='demo-customized-select-native'
+													sx={{ position: 'relative' }}
+												>
+													Price
+												</InputLabel>
+												<NativeSelect
+													id='demo-customized-select-native'
+													value={price}
+													onChange={handleChange}
+													input={<BootstrapInput />}
+													inputProps={{ 'aria-label': 'Price' }}
+												>
+													<option aria-label='None' value='' />
+													<option value='$10'>Free -$0</option>
+													<option value='$20'>Pro -$15</option>
+													<option value='$30'>Enterprise -$30</option>
+												</NativeSelect>
+											</FormControl>
+											<Typography id='modal-modal-description' sx={{ mt: 2 }}>
+												<TextField
+													id='filled-basic'
+													name='firstName'
+													required
+													type='text'
+													value={firstName}
+													onChange={(e: any) => setFirstname(e.target.value)}
+													label='First Name'
+													variant='filled'
+													sx={{ width: '100%' }}
+												/>
+											</Typography>
+											<Typography id='modal-modal-description' sx={{ mt: 2 }}>
+												<TextField
+													id='filled-basic'
+													name='lastName'
+													required
+													type='text'
+													label='Last Name'
+													value={lastName}
+													onChange={(e: any) => setLastName(e.target.value)}
+													variant='filled'
+													sx={{ width: '100%' }}
+												/>
+											</Typography>
+											<Typography id='modal-modal-description' sx={{ mt: 2 }}>
+												<TextField
+													id='filled-basic'
+													name='telegramName'
+													required
+													type='text'
+													label='Telegram Username'
+													value={telegramName}
+													onChange={(e: any) => setTelegramName(e.target.value)}
+													variant='filled'
+													sx={{ width: '100%' }}
+												/>
+											</Typography>
+											<Typography id='modal-modal-description' sx={{ mt: 2 }}>
+												<TextField
+													id='filled-basic'
+													name='email'
+													required
+													label='Email'
+													type='email'
+													value={email}
+													onChange={(e: any) => setEmail(e.target.value)}
+													variant='filled'
+													sx={{ width: '100%' }}
+												/>
+											</Typography>
+											<Typography id='modal-modal-description' sx={{ mt: 2 }}>
+												<TextField
+													id='filled-basic'
+													name='phoneNumber'
+													required
+													type='number'
+													label='Phone Number'
+													value={phoneNumber}
+													onChange={(e: any) => setPhoneNumber(e.target.value)}
+													variant='filled'
+													sx={{ width: '100%' }}
+												/>
+											</Typography>
+											<Typography id='modal-modal-description' sx={{ mt: 2 }}>
+												{isSaving ? (
+													<LoadingButton
+														loading
+														loadingPosition='start'
+														startIcon={<SaveIcon />}
+														variant='outlined'
+													>
+														Saving...
+													</LoadingButton>
+												) : (
+													<Button
+														disabled={isEmpty}
+														variant='outlined'
+														onClick={(e: any) => handleSubmit(e)}
+													>
+														Proceed to Payment
+													</Button>
+												)}
+											</Typography>
+										</Box>
+									</Modal>
+									<USDTForm
+										showUsdtForm={showUsdtForm}
+										handleUsdtClose={handleUsdtClose}
+									/>
+								</Card>
+							</Grid>
+						))}
+					</Grid>
 				</Container>
 				<div className={styles.charts}>
 					<CryptoCharts />
 					{/* <CurrencyConverter /> */}
 				</div>
-			{/* Footer */}
-			<Container
-				maxWidth='md'
-				component='footer'
-				sx={{
-					borderTop: (theme: any) => `1px solid ${theme.palette.divider}`,
-					mt: 8,
-					py: [3, 6],
-				}}
-			>
-				{/* <Grid container spacing={4} justifyContent='space-evenly'>
+				{/* Footer */}
+				<Container
+					maxWidth='md'
+					component='footer'
+					sx={{
+						borderTop: (theme: any) => `1px solid ${theme.palette.divider}`,
+						mt: 8,
+						py: [3, 6],
+					}}
+				>
+					{/* <Grid container spacing={4} justifyContent='space-evenly'>
 					{FootersData.map(footer => (
 						<Grid item xs={6} sm={3} key={footer.title}>
 							<Typography variant='h6' color='text.primary' gutterBottom style={{color: 'white'}}>
@@ -496,11 +590,10 @@ const BootstrapInput = styled(InputBase)(({ theme }) => ({
 						</Grid>
 					))}
 				</Grid> */}
-				<CopyWright sx={{ mt: 5 }} />
+					<CopyWright sx={{ mt: 5 }} />
 				</Container>
 				{/* End footer */}
 			</div>
-
 		</React.Fragment>
 	);
 }

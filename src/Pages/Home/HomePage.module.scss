@@ -98,7 +98,7 @@
             @include breakpoint('s') {
                 flex-direction: column;
             }
-            button {
+            button, a {
                 display: flex;
                 justify-content: center;
                 align-items: center;
@@ -108,6 +108,7 @@
                 height: 4rem;
                 font-size: to-rem(20);
                 cursor: pointer;
+                text-decoration: none;
                 @include breakpoint('s') {
                     margin: 1rem;
                     width: 14rem;
@@ -120,7 +121,7 @@
                 border: 1px solid #4328b7;
 
             }
-            button:last-child {
+            a {
                 background: color(White);
                 color: color(Black);
                 border: 1px solid white;
@@ -131,7 +132,7 @@
                 border: 1px solid color(PrimaryDark);
                 color: color(White);
             }
-            button:last-child:hover {
+            a:last-child:hover {
                 background: color(Primary);
                 color: color(White);
                 border: 1px solid color(Primary);
