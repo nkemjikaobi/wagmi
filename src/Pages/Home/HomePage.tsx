@@ -286,7 +286,11 @@ const BootstrapInput = styled(InputBase)(({ theme }) => ({
 					<p>We. All. Gonna. Make. It.</p>
 					<div className={styles.buttonWrapper}>
 						<button>Crypto Consultation</button>
-						<a href='https://chat.whatsapp.com/D9UDAl9VQCD9OXBjt4TGqj'  target="_blank" rel="noreferrer">
+						<a
+							href='https://chat.whatsapp.com/D9UDAl9VQCD9OXBjt4TGqj'
+							target='_blank'
+							rel='noreferrer'
+						>
 							Join Our Group
 						</a>
 					</div>
@@ -549,10 +553,12 @@ const BootstrapInput = styled(InputBase)(({ theme }) => ({
 											</Typography>
 										</Box>
 									</Modal>
-									<USDTForm
-										showUsdtForm={showUsdtForm}
-										handleUsdtClose={handleUsdtClose}
-									/>
+									{showUsdtForm && (
+										<USDTForm
+											showUsdtForm={showUsdtForm}
+											handleUsdtClose={handleUsdtClose}
+										/>
+									)}
 								</Card>
 							</Grid>
 						))}

@@ -32,23 +32,29 @@ const USDTForm = (props: IUSDTForm) => {
 		boxShadow: 24,
 		p: 4,
 	};
-    const getData = async () => {
-        try {
-            const res = await fetch(
-							'https://sheet.best/api/sheets/bcbcca66-6b28-4050-9df7-e2a11a500adf'
-            );
-            const data = await res.json();
-            setWalletAddress(data[0].walletAddress);
-            setPhone(data[0].phone)
-        } catch (error) {
-            console.log(error)
-        }
-		
-    };
-    
-    useEffect(() => {
-        getData();
-    },[])
+	const getData = async () => {
+		try {
+			const res = await fetch(
+				'https://sheet.best/api/sheets/bcbcca66-6b28-4050-9df7-e2a11a500adf'
+			);
+			const data = await res.json();
+			setWalletAddress(data[0].walletAddress);
+			setPhone(data[0].phone);
+		} catch (error) {
+			console.log(error);
+		}
+	};
+
+	useEffect(() => {
+		let mounted = true;
+		if (walletAddress === '' && phone === '') {
+			getData();
+			console.log('ran');
+		}
+		return () => {
+			mounted = false;
+		};
+	}, [walletAddress, phone]);
 	const handleClick = () => {
 		if (!showId) {
 			return setShowId(true);
@@ -57,8 +63,8 @@ const USDTForm = (props: IUSDTForm) => {
 			return toast.error('Transaction Id is required');
 		}
 		if (transactionId !== '') {
-			toast.info('ID received..Redirecting to telegram');
-            props.handleUsdtClose(false);
+			toast.info('ID received..Redirecting to whatsapp');
+			props.handleUsdtClose(false);
 			const win: any = window.open(
 				`https://wa.me/${phone}?text=Hello, I just made a payment to your USDT address. My Transaction Id is ${transactionId}`,
 				'_blank'
@@ -85,14 +91,14 @@ const USDTForm = (props: IUSDTForm) => {
 						alignItems: 'center',
 					}}
 				>
-						<Typography
-							id='modal-modal-title'
-							variant='h6'
-							component='h2'
-							sx={{ textAlign: 'center' }}
-						>
-							Pay to the USDT address below
-						</Typography>
+					<Typography
+						id='modal-modal-title'
+						variant='h6'
+						component='h2'
+						sx={{ textAlign: 'center' }}
+					>
+						Pay to the USDT address below
+					</Typography>
 					<div
 						onClick={() => props.handleUsdtClose(false)}
 						style={{ cursor: 'pointer' }}
