@@ -18,7 +18,7 @@ const USDTForm = (props: IUSDTForm) => {
 	const [showId, setShowId] = useState<boolean>(false);
 	const [transactionId, setTransactionId] = useState<string>('');
 	const [walletAddress, setWalletAddress] = useState<string>('');
-	const [username, setUsername] = useState<string>('');
+	const [phone, setPhone] = useState<string>('');
 	const history = useHistory();
 
 	const style = {
@@ -39,7 +39,7 @@ const USDTForm = (props: IUSDTForm) => {
             );
             const data = await res.json();
             setWalletAddress(data[0].walletAddress);
-            setUsername(data[0].username)
+            setPhone(data[0].phone)
         } catch (error) {
             console.log(error)
         }
@@ -59,14 +59,14 @@ const USDTForm = (props: IUSDTForm) => {
 		if (transactionId !== '') {
 			toast.info('ID received..Redirecting to telegram');
             props.handleUsdtClose(false);
-			// const win: any = window.open(
-			// 	`https://wa.me/2348027623156?text=Hello, I just made a payment to your USDT address. My Transaction Id is ${transactionId}`,
-			// 	'_blank'
-			// );
 			const win: any = window.open(
-				`https://t.me/${username}/`,
+				`https://wa.me/${phone}?text=Hello, I just made a payment to your USDT address. My Transaction Id is ${transactionId}`,
 				'_blank'
 			);
+			// const win: any = window.open(
+			// 	`https://t.me/${username}/`,
+			// 	'_blank'
+			// );
 			win.focus();
 		}
 	};
@@ -85,16 +85,6 @@ const USDTForm = (props: IUSDTForm) => {
 						alignItems: 'center',
 					}}
 				>
-					{showId ? (
-						<Typography
-							id='modal-modal-title'
-							variant='h6'
-							component='h2'
-							sx={{ textAlign: 'center' }}
-						>
-							Send your transaction id to the user in next page
-						</Typography>
-					) : (
 						<Typography
 							id='modal-modal-title'
 							variant='h6'
@@ -103,8 +93,6 @@ const USDTForm = (props: IUSDTForm) => {
 						>
 							Pay to the USDT address below
 						</Typography>
-					)}
-
 					<div
 						onClick={() => props.handleUsdtClose(false)}
 						style={{ cursor: 'pointer' }}
