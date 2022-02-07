@@ -35,7 +35,7 @@ const USDTForm = (props: IUSDTForm) => {
 	const getData = async () => {
 		try {
 			const res = await fetch(
-				'https://sheet.best/api/sheets/bcbcca66-6b28-4050-9df7-e2a11a500adf'
+				'https://sheet.best/api/sheets/87a7eb5a-3531-4b1d-bf89-c506b4ca790d'
 			);
 			const data = await res.json();
 			setWalletAddress(data[0].walletAddress);
