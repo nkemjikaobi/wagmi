@@ -13,7 +13,7 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import GlobalStyles from '@mui/material/GlobalStyles';
 import Container from '@mui/material/Container';
-import { FootersData, PlansData, TiersData } from 'Constants';
+import { PlansData } from 'Constants';
 import CopyWright from 'Components/CopyWright/CopyWright';
 import styles from "./HomePage.module.scss";
 import Particles from 'react-tsparticles';
@@ -34,7 +34,7 @@ import InputBase from '@mui/material/InputBase';
 import { styled } from '@mui/material/styles';
 import { useHistory } from "react-router-dom";
 import { AiOutlineClose } from "react-icons/ai"
-import { Link } from "react-router-dom"
+import wagmi2 from "../../Assets/images/png/wagmi2.jpg";
 
 
 const PricingContent = () => {
@@ -179,10 +179,10 @@ const BootstrapInput = styled(InputBase)(({ theme }) => ({
 						variant='h6'
 						color='inherit'
 						noWrap
-						sx={{ flexGrow: 1, cursor: 'pointer' }}
+						sx={{ flexGrow: 1, cursor: 'pointer', display: 'flex' }}
 						onClick={() => history.push('/')}
 					>
-						WAGMI
+						<img src={wagmi2} alt='wagmi-logo' />
 					</Typography>
 					<nav></nav>
 					<Button
