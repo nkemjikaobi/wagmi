@@ -461,9 +461,9 @@ const BootstrapInput = styled(InputBase)(({ theme }) => ({
 													inputProps={{ 'aria-label': 'Price' }}
 												>
 													<option aria-label='None' value='' />
-													<option value='$65'>Free -$65</option>
-													<option value='$85'>Pro -$85</option>
-													<option value='$120'>Enterprise -$120</option>
+													<option value='$65'>Training -$65</option>
+													<option value='$85'>Spot & Futures -$85</option>
+													<option value='$120'>VIP -$120</option>
 												</NativeSelect>
 											</FormControl>
 											<Typography id='modal-modal-description' sx={{ mt: 2 }}>
