@@ -97,7 +97,7 @@ const USDTForm = (props: IUSDTForm) => {
 						component='h2'
 						sx={{ textAlign: 'center' }}
 					>
-						Pay to the USDT address below
+						Pay to the USDT address below(TRC20)
 					</Typography>
 					<div
 						onClick={() => props.handleUsdtClose(false)}
