@@ -15,8 +15,7 @@ import GlobalStyles from '@mui/material/GlobalStyles';
 import Container from '@mui/material/Container';
 import { PlansData } from 'Constants';
 import CopyWright from 'Components/CopyWright/CopyWright';
-import styles from "./HomePage.module.scss";
-import Particles from 'react-tsparticles';
+import styles from './HomePage.module.scss';
 import HorizontalLiveTicker from 'Components/HoriziontalLiveTicker/HorizontalLiveTicker';
 import CryptoCharts from 'Components/CryptoCharts/CryptoCharts';
 import CurrencyConverter from 'Components/CurrencyConverter/CurrencyConverter';
@@ -32,10 +31,9 @@ import InputLabel from '@mui/material/InputLabel';
 import FormControl from '@mui/material/FormControl';
 import InputBase from '@mui/material/InputBase';
 import { styled } from '@mui/material/styles';
-import { useHistory } from "react-router-dom";
-import { AiOutlineClose } from "react-icons/ai"
-import wagmi2 from "../../Assets/images/png/wagmi2.jpg";
-
+import { useHistory } from 'react-router-dom';
+import { AiOutlineClose } from 'react-icons/ai';
+import wagmi2 from '../../Assets/images/png/wagmi2.jpg';
 
 const PricingContent = () => {
 	const [open, setOpen] = useState(false);
@@ -51,115 +49,137 @@ const PricingContent = () => {
 	const history = useHistory();
 
 	const handleChange = (event: { target: { value: string } }) => {
-    setPrice(event.target.value);
-  };
+		setPrice(event.target.value);
+	};
 
 	const handleOpen = () => setOpen(true);
 	const handleClose = () => {
 		setOpen(false);
 	};
-	
+
 	useEffect(() => checkForEmptyField());
 
-
-const BootstrapInput = styled(InputBase)(({ theme }) => ({
-  'label + &': {
-    marginTop: theme.spacing(3),
-  },
-  '& .MuiInputBase-input': {
-    borderRadius: 4,
-    position: 'relative',
-    backgroundColor: theme.palette.background.paper,
-    border: '1px solid #ced4da',
-    fontSize: 16,
-    padding: '10px 26px 10px 12px',
-    transition: theme.transitions.create(['border-color', 'box-shadow']),
-    // Use the system font instead of the default Roboto font.
-    fontFamily: [
-      '-apple-system',
-      'BlinkMacSystemFont',
-      '"Segoe UI"',
-      'Roboto',
-      '"Helvetica Neue"',
-      'Arial',
-      'sans-serif',
-      '"Apple Color Emoji"',
-      '"Segoe UI Emoji"',
-      '"Segoe UI Symbol"',
-    ].join(','),
-    '&:focus': {
-      borderRadius: 4,
-      borderColor: '#80bdff',
-      boxShadow: '0 0 0 0.2rem rgba(0,123,255,.25)',
-    },
-  },
-}));
+	const BootstrapInput = styled(InputBase)(({ theme }) => ({
+		'label + &': {
+			marginTop: theme.spacing(3),
+		},
+		'& .MuiInputBase-input': {
+			borderRadius: 4,
+			position: 'relative',
+			backgroundColor: theme.palette.background.paper,
+			border: '1px solid #ced4da',
+			fontSize: 16,
+			padding: '10px 26px 10px 12px',
+			transition: theme.transitions.create(['border-color', 'box-shadow']),
+			// Use the system font instead of the default Roboto font.
+			fontFamily: [
+				'-apple-system',
+				'BlinkMacSystemFont',
+				'"Segoe UI"',
+				'Roboto',
+				'"Helvetica Neue"',
+				'Arial',
+				'sans-serif',
+				'"Apple Color Emoji"',
+				'"Segoe UI Emoji"',
+				'"Segoe UI Symbol"',
+			].join(','),
+			'&:focus': {
+				borderRadius: 4,
+				borderColor: '#80bdff',
+				boxShadow: '0 0 0 0.2rem rgba(0,123,255,.25)',
+			},
+		},
+	}));
 
 	const handleSubmit = async (e: any) => {
 		e.preventDefault();
 		setIsSaving(true);
 		const userData = {
-			price, firstName, lastName, telegramName, email, phoneNumber, date: new Date().toString()
-		}
+			price,
+			firstName,
+			lastName,
+			telegramName,
+			email,
+			phoneNumber,
+			date: new Date().toString(),
+		};
 		try {
-			const res = await fetch("https://sheet.best/api/sheets/bcbcca66-6b28-4050-9df7-e2a11a500adf", {
-				method: 'POST',
-				headers: {
-					"Content-Type": "application/json"
-				},
-				body: JSON.stringify(userData)
-			})
-			if (res.ok) {
-				setIsSaving(false)
-				toast.info("Your data has been received");
-				handleShowUsdtForm()
+			const firstRes = await fetch(
+				'https://sheet.best/api/sheets/bcbcca66-6b28-4050-9df7-e2a11a500adf'
+			);
+			const firstData = await firstRes.json();
+			for (let i = 0; i < firstData.length; i++){
+				if (userData.email === firstData[i].email) {
+					setIsSaving(false);
+					toast.info('Email exists');
+					return
+				}
 			}
-		}
-		catch (error) {
+			const res = await fetch(
+				'https://sheet.best/api/sheets/bcbcca66-6b28-4050-9df7-e2a11a500adf',
+				{
+					method: 'POST',
+					headers: {
+						'Content-Type': 'application/json',
+					},
+					body: JSON.stringify(userData),
+				}
+			);
+			if (res.ok) {
+				setIsSaving(false);
+				toast.info('Your data has been received');
+				handleShowUsdtForm();
+			}
+		} catch (error) {
 			console.log(error);
 		}
-	}
+	};
 
-	
 	const handleUsdtClose = (visibility: boolean) => {
 		setShowUsdtForm(visibility);
-	}
+	};
 
-		const particlesInit = (main: any) => {
-			console.log(main);
+	const particlesInit = (main: any) => {
+		console.log(main);
 
-			// you can initialize the tsParticles instance (main) here, adding custom shapes or presets
-		};
+		// you can initialize the tsParticles instance (main) here, adding custom shapes or presets
+	};
 
-		const particlesLoaded = (container: any) => {
-			console.log(container);
-		};
-	
+	const particlesLoaded = (container: any) => {
+		console.log(container);
+	};
+
 	const checkForEmptyField = () => {
-		if (firstName === '' || lastName === '' || email === '' || phoneNumber === '' || telegramName === '' || price === '') {
+		if (
+			firstName === '' ||
+			lastName === '' ||
+			email === '' ||
+			phoneNumber === '' ||
+			telegramName === '' ||
+			price === ''
+		) {
 			return setIsEmpty(true);
-		}
-		else {
+		} else {
 			return setIsEmpty(false);
 		}
-		
-	}
+	};
 
-		const style = {
-			position: 'absolute' as 'absolute',
-			top: '50%',
-			left: '50%',
-			transform: 'translate(-50%, -50%)',
-			width: 400,
-			bgcolor: 'background.paper',
-			border: '2px solid #000',
-			boxShadow: 24,
-			p: 4,
-		};
-		const handleShowUsdtForm = () => {
-			setOpen(false);
-			setShowUsdtForm(true);
-		};
+	const style = {
+		position: 'absolute' as 'absolute',
+		top: '50%',
+		left: '50%',
+		transform: 'translate(-50%, -50%)',
+		width: 400,
+		bgcolor: 'background.paper',
+		border: '2px solid #000',
+		boxShadow: 24,
+		p: 4,
+	};
+	const handleShowUsdtForm = () => {
+		setOpen(false);
+		setShowUsdtForm(true);
+	};
 	return (
 		<React.Fragment>
 			<GlobalStyles
@@ -199,88 +219,6 @@ const BootstrapInput = styled(InputBase)(({ theme }) => ({
 			{/* Hero unit */}
 			{/* Background Image Start */}
 			<div className={styles.bg}>
-				{/* <Particles
-						id='tsparticles'
-						init={particlesInit}
-						loaded={particlesLoaded}
-						options={{
-							background: {
-								color: {
-									value: '#020928',
-								},
-							},
-							fpsLimit: 60,
-							interactivity: {
-								events: {
-									onClick: {
-										enable: true,
-										mode: 'push',
-									},
-									onHover: {
-										enable: true,
-										mode: 'repulse',
-									},
-									resize: true,
-								},
-								modes: {
-									bubble: {
-										distance: 400,
-										duration: 1,
-										opacity: 0.8,
-										size: 40,
-									},
-									push: {
-										quantity: 4,
-									},
-									repulse: {
-										distance: 200,
-										duration: 0.4,
-									},
-								},
-							},
-							particles: {
-								color: {
-									value: '#ffffff',
-								},
-								links: {
-									color: '#ffffff',
-									distance: 150,
-									enable: true,
-									opacity: 0.5,
-									width: 1,
-								},
-								collisions: {
-									enable: true,
-								},
-								move: {
-									direction: 'none',
-									enable: true,
-									outMode: 'bounce',
-									random: false,
-									speed: 6,
-									straight: false,
-								},
-								number: {
-									density: {
-										enable: true,
-										area: 800,
-									},
-									value: 80,
-								},
-								opacity: {
-									value: 0.5,
-								},
-								shape: {
-									type: 'circle',
-								},
-								size: {
-									random: true,
-									value: 5,
-								},
-							},
-							detectRetina: true,
-						}}
-					/>  */}
 				<div className={styles.wrapper}>
 					<h1 style={{ margin: '0px' }}>WAGMI</h1>
 					<p>We. All. Gonna. Make. It.</p>
@@ -602,7 +540,7 @@ const BootstrapInput = styled(InputBase)(({ theme }) => ({
 			</div>
 		</React.Fragment>
 	);
-}
+};
 
 export default function HomePage() {
 	return (

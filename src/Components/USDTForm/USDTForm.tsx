@@ -6,7 +6,6 @@ import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { useHistory } from 'react-router-dom';
 import { AiOutlineClose } from 'react-icons/ai';
 
 interface IUSDTForm {
@@ -19,7 +18,6 @@ const USDTForm = (props: IUSDTForm) => {
 	const [transactionId, setTransactionId] = useState<string>('');
 	const [walletAddress, setWalletAddress] = useState<string>('');
 	const [phone, setPhone] = useState<string>('');
-	const history = useHistory();
 
 	const style = {
 		position: 'absolute' as 'absolute',
